@@ -7,6 +7,8 @@
 !ai_backend.py
 !README.md
 !.gitignore
+!LICENSE
+!images/
 
 # Allow project folders if needed (but currently we want a clean root)
 #!v1/
