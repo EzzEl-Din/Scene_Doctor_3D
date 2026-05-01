@@ -36,3 +36,6 @@ v3/*
 
 # Allow .gitignore itself
 !.gitignore
+
+# Allow root README
+!README.md
