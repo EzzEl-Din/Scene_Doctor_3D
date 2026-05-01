@@ -1,0 +1,38 @@
+# Ignore everything
+*
+
+# Allow version folders
+!v1/
+!v2/
+!v2.5/
+!v3/
+
+# Inside version folders, ignore everything
+v1/*
+v2/*
+v2.5/*
+v3/*
+
+# Allow only these 4 files in each version folder
+!v1/README.md
+!v1/main.py
+!v1/scanner.py
+!v1/ai_backend.py
+
+!v2/README.md
+!v2/main.py
+!v2/scanner.py
+!v2/ai_backend.py
+
+!v2.5/README.md
+!v2.5/main.py
+!v2.5/scanner.py
+!v2.5/ai_backend.py
+
+!v3/README.md
+!v3/main.py
+!v3/scanner.py
+!v3/ai_backend.py
+
+# Allow .gitignore itself
+!.gitignore
