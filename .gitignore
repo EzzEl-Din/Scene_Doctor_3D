@@ -9,6 +9,7 @@
 !.gitignore
 !LICENSE
 !images/
+!images/*
 
 # Allow project folders if needed (but currently we want a clean root)
 #!v1/
