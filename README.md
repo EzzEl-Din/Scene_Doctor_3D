@@ -1,151 +1,86 @@
-# 🩺 Maya Scene Doctor AI — V3 (Multi-Agent)
+# 🩺 Maya Scene Doctor AI
 
 ![Maya](https://img.shields.io/badge/Maya-2022%2B-blue)
 ![Python](https://img.shields.io/badge/Python-3.7%2B-yellow)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-An AI assistant that lives inside Maya. It automatically scans your scene, explains what's wrong and why, suggests fixes with runnable code, and can even verify its own work — all without leaving Maya.
+**Maya Scene Doctor AI** is a professional-grade artificial intelligence assistant built directly into Autodesk Maya. It bridge the gap between technical complexity and artistic workflow by providing a "Doctor" that can instantly diagnose, explain, and repair complex 3D scenes.
 
 ![Screenshot](images/screenshot.png)
-
-**V3** introduces a **multi-agent architecture** — specialized AI agents for analysis, code writing, vision, and summarisation — plus a **single-agent mode** for quick setup.
 
 Built by **Ezz El-Din** | [LinkedIn](https://www.linkedin.com/in/ezzel-din-tarek-mostafa)
 
 ---
 
-## ✨ Features
+## 📖 The Project Mission
 
-### Core
-- **Auto-scan on open** — no manual button needed.
-- **Prioritized report** — 🔴 Critical / 🟡 Warning / 🟢 Info.
-- **Plain language** — explains WHY each issue matters.
-- **Chat per scene** — history saves and loads automatically per `.ma` / `.mb` file.
-- **Smart re-scan** — AI decides on its own when it needs fresh scene data.
-- **Real-time streaming** — responses appear token by token like ChatGPT.
-- **Any AI backend** — local (Ollama) or any OpenAI-compatible API.
-- **🚀 Zero-Dependency** — Built using native Maya libraries (`urllib`, `PySide`). No complex `pip` installations required.
+Manual troubleshooting in Maya is often the most time-consuming part of a 3D artist's day. Whether it's tracking down a broken shader, fixing non-manifold geometry, or optimizing render settings, these tasks pull artists away from their creative work.
 
-### Multi-Agent Architecture (V3)
-- **🔍 Analyzer** — reads scene data and describes issues in plain text.
-- **🔧 Code Writer** — writes clean Maya Python fixes based on the analysis.
-- **👁 Vision** — evaluates viewport screenshots to verify fixes.
-- **💬 Summary** — auto-summarises long conversations to save context.
-- **Single Agent mode** — use one model for everything (simpler setup).
-- **Multi Agent mode** — assign different models per agent (advanced).
-
-### Vision
-- **Viewport screenshots** — click 📷 to capture and send the viewport to the AI.
-- **Clipboard paste** — paste images directly with Ctrl+V.
-- **Drag & drop** — drop image files onto the window.
-- **Vision compatibility** — warns if the selected model may not support images.
-
-### Code Execution
-- **Runnable code blocks** — AI suggests Maya Python fixes inside `▶ Run` / `✕ Dismiss` buttons.
-- **Editable before running** — review and tweak the code before executing.
-- **Safe execution** — code runs in a sandboxed namespace with `cmds`, `mel`, and `os`.
-
-### Agentic Auto-Check
-- **Self-verifying fixes** — after running code, the Vision agent automatically takes a viewport screenshot and evaluates the result.
-- **Iterative fixes** — if something looks wrong, the AI suggests another fix (up to 3 attempts).
-- **Hands-free workflow** — run a fix and let the AI confirm it worked without manual checking.
-
-### Search Mode
-- **Web search** — toggle 🔍 search mode to find tools, plugins, and tutorials.
-- **Searches Gumroad, GitHub, and 80 Level** for relevant resources.
+**Maya Scene Doctor AI** solves this by using specialized AI agents that act as a virtual Technical Director (TD). It doesn't just find problems; it understands them and provides the code to fix them instantly.
 
 ---
 
-## 🔍 Deep Scene Scanning Capabilities
+## 🧠 Core Architecture: Multi-Agent Intelligence
 
-The doctor analyzes every corner of your Maya scene:
-- **Meshes**: Vertex/face/tri counts, non-manifold geometry, lamina faces, frozen transforms, construction history.
-- **Materials**: Shading groups, missing textures with absolute file paths.
-- **Lights**: Type, intensity, color, position, visibility, and issues (zero intensity, hidden, black color, overexposure).
-- **Cameras**: Focal length, clipping planes, renderable flag, z-fighting detection.
-- **Rigs & Joints**: Joint hierarchy, skin clusters, locked attributes.
-- **Render layers**: Enabled state, empty layers, member counts.
-- **References**: Loaded/unloaded status, missing files.
-- **Unknown nodes**: Missing plugin detection.
-- **Animation**: Anim curve count, infinity extrapolation issues.
-- **Render settings**: Active renderer, resolution, render range.
+The project utilizes a sophisticated multi-agent system where different AI "experts" collaborate to solve your scene's problems:
+
+- **🔍 The Analyzer Agent**: Performs a deep forensic scan of the Maya scene. It translates technical data into plain human language, explaining *why* an issue is a problem and what its impact might be.
+- **🔧 The Code Writer Agent**: A Maya Python specialist. Once the Analyzer identifies a problem, the Code Writer generates optimized, self-contained scripts to fix it. Every script is safe, editable, and built specifically for your scene state.
+- **👁 The Vision Agent**: A visual quality control expert. It can "see" your viewport, allowing it to evaluate lighting quality, detect visual artifacts, and verify that a fix actually looks right.
+- **💬 The Summary Agent**: Manages the conversation context, ensuring that as you chat with the doctor, it stays focused on the most important tasks without losing track of previous fixes.
 
 ---
 
-## 📁 Repository Structure
+## 🔍 Deep Scene Diagnostics
 
-```
-Scene_Doctor_3D/
-├── main.py          ← UI + chat window (run this)
-├── scanner.py       ← reads Maya scene data
-├── ai_backend.py    ← handles AI communication (multi-agent)
-├── images/          ← UI screenshots and assets
-├── LICENSE          ← MIT License
-└── README.md
-```
+The "Doctor" doesn't just look at the surface. It performs a comprehensive health check across the entire Maya ecosystem:
 
----
-
-## ⚙️ Requirements
-
-- Autodesk Maya 2020 or newer.
-- Python 3 (already included with Maya).
-- One of the following:
-  - **Ollama** (free, runs locally — no internet needed).
-  - **Any OpenAI-compatible API** — OpenRouter, Groq, Mistral, OpenAI...
-
-> **Note:** For vision features (screenshots & image paste), use a model that supports images — e.g. Llama 4, GPT-4o, Gemini 2, or Claude.
+- **Geometry Health**: Detects non-manifold edges, lamina faces, zero-area faces, and construction history bloat.
+- **Shading & Textures**: Identifies broken shading networks, missing texture paths, and unassigned materials.
+- **Lighting & Rendering**: Checks for zero-intensity lights, hidden light sources, overexposed areas, and unoptimized render settings.
+- **Scene Rigidity**: Monitors the joint hierarchy, skin clusters, locked attributes, and potential rigging bottlenecks.
+- **Reference Management**: Tracks loaded/unloaded references and identifies missing external files.
+- **Data Cleanup**: Finds unknown nodes, empty groups, and "zombie" data that can cause scene instability or file bloat.
 
 ---
 
-## 🚀 Installation & Usage
+## 🛠 Features for the Modern Artist
 
-1. **Download** all files and place them in your Maya scripts folder:
-   - **Windows**: `Documents/maya/scripts/`
-2. Open **Maya**.
-3. Open the **Script Editor** (Windows → General Editors → Script Editor).
-4. Make sure the tab is set to **Python**.
-5. Paste and run:
+- **Zero-Dependency Integration**: Built entirely with native Maya libraries (`urllib`, `PySide`). You don't need to install `pip`, `requests`, or manage complex Python environments.
+- **Agentic Verification**: The AI doesn't just "hope" the fix worked. It can automatically take a screenshot after running code, evaluate the result, and iterate if necessary.
+- **Local & Cloud Flexibility**: Run completely offline using **Ollama** for privacy and speed, or connect to high-performance cloud models like **GPT-4o** or **Groq**.
+- **Integrated Web Search**: If a problem requires a third-party plugin or a specific tutorial, the AI can search GitHub, Gumroad, and 80 Level to find the exact resource you need.
+- **Persistent Scene History**: Every Maya file carries its own "medical history." When you reopen a scene, the Doctor remembers previous scans and conversations.
+
+---
+
+## 🚀 Getting Started
+
+### Installation
+1. **Download** the repository files.
+2. Place the files in your Maya scripts folder (e.g., `Documents/maya/scripts/`).
+3. In a **Python** tab in the Maya Script Editor, run:
 
 ```python
 import main
 main.show()
 ```
 
----
-
-## 🔧 Setup — Choose Your AI
-
-Click **⚙ Settings** in the tool to configure.
-
-### Option A: Local (Ollama — free, offline)
-1. Download Ollama from [ollama.com](https://ollama.com).
-2. Run in terminal: `ollama pull llama3`.
-3. In Settings: Set Backend to `Local (Ollama)`, Base URL to `http://localhost:11434`, and Model to `llama3`.
-
-### Option B: External API (OpenRouter, Groq, etc.)
-1. Create an account on [OpenRouter](https://openrouter.ai) or [Groq](https://groq.com).
-2. Generate an API key.
-3. In Settings: Set Backend to `External API`, paste your API Key, and enter the Model name (e.g., `gpt-4o`).
+### Setup
+- Click the **Settings (⚙️)** icon to choose your AI backend.
+- **Local**: Use Ollama (`http://localhost:11434`).
+- **Cloud**: Use any OpenAI-compatible API key.
 
 ---
 
-## 💬 How to Use
+## 🤝 Community & Support
 
-1. **Open any Maya scene** — the tool auto-scans and shows a report immediately.
-2. **Read the AI's analysis** — issues are prioritized by severity with a health score.
-3. **Ask follow-up questions** — chat naturally about your scene.
-4. **Send images** — click 📷 for a viewport screenshot, or Ctrl+V to paste from clipboard.
-5. **Run suggested fixes** — click `▶ Run` on code blocks the AI provides.
-6. **Let the AI verify** — the AI automatically checks the viewport and confirms the fix worked.
-7. **Search for tools** — toggle 🔍 search mode and ask about plugins or tutorials.
+This project is built to empower the Maya community. If you have ideas for new scanning rules or agent behaviors, we encourage you to open an issue or contribute a pull request.
 
 ---
 
 ## 📜 License
 
 This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
-
----
 
 Built with ❤️ by **Ezz El-Din** | [LinkedIn](https://www.linkedin.com/in/ezzel-din-tarek-mostafa)
