@@ -1,5 +1,9 @@
 # 🩺 Maya Scene Doctor AI
 
+> [!WARNING]
+> **This repository is the legacy Maya-only plugin version.**
+> Development has moved to the new standalone desktop app: [Scene Doctor Studio](https://github.com/EzzEl-Din/Scene-Doctor-Studio), which supports both Maya and Blender.
+
 ![Maya](https://img.shields.io/badge/Maya-2022%2B-blue)
 ![Python](https://img.shields.io/badge/Python-3.7%2B-yellow)
 ![License](https://img.shields.io/badge/License-MIT-green)
